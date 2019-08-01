@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FetchResitoriesCoordinators {
+class FetchResitoriesCoordinators: Coordinator {
 	func start(){
 	
 	}
