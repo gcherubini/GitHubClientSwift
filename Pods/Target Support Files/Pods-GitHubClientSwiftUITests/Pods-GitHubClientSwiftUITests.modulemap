@@ -1,0 +1,6 @@
+framework module Pods_GitHubClientSwiftUITests {
+  umbrella header "Pods-GitHubClientSwiftUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
