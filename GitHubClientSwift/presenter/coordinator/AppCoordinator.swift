@@ -13,22 +13,22 @@ class AppCoordinator {
 	
 	private let window: UIWindow
 	private let navigationController: UINavigationController
-    var starterCoordinator: Coordinator?
 	
 	init(window: UIWindow = UIWindow(),
 			 navigationController: UINavigationController = UINavigationController()) {
 		self.window = window
 		self.navigationController = navigationController
-        setupStarterCoordinator()
-        start()
-	}
-	
-	func start() {
-		starterCoordinator?.start()
+        setupWindow()
 	}
     
-    private func setupStarterCoordinator() {
-        starterCoordinator = FetchResitoriesCoordinators()
+    private func setupWindow() {
+        window.rootViewController = navigationController
+        window.makeKeyAndVisible()
     }
+	
+	func start() {
+        FetchResitoriesCoordinator(navigationController: navigationController).start()
+	}
+    
 }
 
