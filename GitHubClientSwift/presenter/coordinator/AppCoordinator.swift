@@ -13,20 +13,38 @@ class AppCoordinator {
 	
 	private let window: UIWindow
 	private let navigationController: UINavigationController
-	
+	private let coordinatorsFactory: CoordinatorsFactory
+
 	init(window: UIWindow = UIWindow(),
-			 navigationController: UINavigationController = UINavigationController()) {
+		 navigationController: UINavigationController,
+		 coordinatorsFactory: CoordinatorsFactory) {
 		self.window = window
 		self.navigationController = navigationController
+		self.coordinatorsFactory = coordinatorsFactory
         setupWindow()
 	}
-    
+	
     private func setupWindow() {
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
     }
 	
 	func start() {
-        FetchResitoriesCoordinator(navigationController: navigationController).start()
+        coordinatorsFactory
+			.makeFetchRepositoriesCoordinator()
+			.start()
+	}
+}
+
+// TODO: Extract to another class and test it
+class CoordinatorsFactory {
+	private let navigationController: UINavigationController
+	
+	init(navigationController: UINavigationController) {
+		self.navigationController = navigationController
+	}
+	
+	func makeFetchRepositoriesCoordinator() -> FetchResitoriesCoordinator {
+		return FetchResitoriesCoordinator(navigationController: navigationController)
 	}
 }

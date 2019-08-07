@@ -13,7 +13,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	var coordinator: AppCoordinator?
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		coordinator = AppCoordinator()
+		let navigationController = UINavigationController()
+		let coordinatorsFactory = CoordinatorsFactory(
+			navigationController: navigationController
+		)
+		coordinator = AppCoordinator(
+			navigationController: navigationController,
+			coordinatorsFactory: coordinatorsFactory
+		)
 		coordinator?.start()
 		return true
 	}
