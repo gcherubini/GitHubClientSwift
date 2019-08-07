@@ -29,6 +29,4 @@ class AppCoordinator {
 	func start() {
         FetchResitoriesCoordinator(navigationController: navigationController).start()
 	}
-    
 }
-
